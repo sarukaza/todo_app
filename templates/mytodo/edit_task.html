@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}タスク編集{% endblock %}
+
+{% block contents %}
+<h1>タスク編集</h1>
+<form method="post">
+    {% csrf_token %}
+    <label>タイトル: <input type="text" name="title" value="{{ task.title }}" required></label><br>
+    <label>説明: <textarea name="description">{{ task.description }}</textarea></label><br>
+    <label>開始日時: <input type="datetime-local" name="start_date" value="{{ task.start_date|date:'Y-m-d\\TH:i' }}"></label><br>
+    <label>終了日時: <input type="datetime-local" name="end_date" value="{{ task.end_date|date:'Y-m-d\\TH:i' }}"></label><br>
+    <button type="submit">保存</button>
+    <a href="/">キャンセル</a>
+</form>
+{% endblock %}
